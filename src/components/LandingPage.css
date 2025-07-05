@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+  color: #222;
+}
+
+.landing-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: white;
+  padding: 20px 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+}
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  color: #1ba94c;
+  font-size: 28px;
+  font-weight: bold;
+}
+.navbar nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+.navbar nav a:hover {
+  color: #1ba94c;
+}
+
+.hero {
+  margin-top: 100px;
+  padding: 60px 40px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hero-content {
+  max-width: 600px;
+}
+.hero h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+.hero p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 32px;
+}
+.hero-image img {
+  max-width: 400px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.btn {
+  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+.btn.green {
+  background-color: #1ba94c;
+  color: white;
+  border: none;
+}
+.btn.green:hover {
+  background-color: #14803a;
+}
+.btn.outline {
+  background-color: white;
+  color: #1ba94c;
+  border: 2px solid #1ba94c;
+}
+.btn.outline:hover {
+  background-color: #f1fef4;
+}
+.btn.link {
+  background: none;
+  border: none;
+  color: #1ba94c;
+  text-decoration: underline;
+  padding: 12px 0;
+}
+.btn.link:hover {
+  text-decoration: none;
+}
+
+.footer {
+  background-color: #f9f9f9;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #777;
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero-image {
+    align-self: center;
+  }
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .cta-buttons a {
+    width: 100%;
+  }
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}

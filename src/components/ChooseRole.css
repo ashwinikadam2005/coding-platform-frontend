@@ -1,0 +1,113 @@
+.role-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: linear-gradient(to right, #f4fff4, #e9fbee);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.role-header h2 {
+  font-size: 36px;
+  color: #1ba94c;
+  margin-bottom: 8px;
+}
+
+.role-header p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.role-options {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.role-card {
+  background-color: white;
+  padding: 30px 24px;
+  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.role-card:hover {
+  transform: translateY(-6px);
+  border-color: #1ba94c;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.role-card h3 {
+  font-size: 22px;
+  color: #222;
+  margin: 16px 0 10px;
+}
+
+.role-card p {
+  color: #666;
+  font-size: 15px;
+}
+
+.icon-wrapper {
+  background-color: #f1fdf4;
+  padding: 16px;
+  border-radius: 50%;
+  display: inline-block;
+  color: #1ba94c;
+  transition: background-color 0.3s ease;
+}
+
+.role-card:hover .icon-wrapper {
+  background-color: #d9f9e0;
+}
+
+.selected {
+  border-color: #1ba94c;
+  background-color: #e9fbee;
+  box-shadow: 0 0 0 4px rgba(27, 169, 76, 0.1);
+}
+
+.create-account-wrapper {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.create-account-btn {
+  background-color: #1ba94c;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-account-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.create-account-btn:hover:enabled {
+  background-color: #14803a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .role-options {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .role-card {
+    width: 100%;
+    max-width: 350px;
+  }
+}
