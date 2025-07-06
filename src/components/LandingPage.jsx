@@ -5,6 +5,7 @@ import "./LandingPage.css";
 const LandingPage = () => {
   return (
     <div className="landing-page">
+      {/* Navbar */}
       <header className="navbar">
         <div className="container">
           <h1 className="logo">CodeRank</h1>
@@ -15,6 +16,7 @@ const LandingPage = () => {
         </div>
       </header>
 
+      {/* Hero Section */}
       <main className="hero">
         <div className="hero-content">
           <h2>Practice Coding. Compete. Get Hired.</h2>
@@ -24,21 +26,18 @@ const LandingPage = () => {
           </p>
 
           <div className="cta-buttons">
-<Link to="/choose-role">
-  <button className="btn green">Start Free Trial</button>
-</Link>
+            <Link to="/choose-role">
+              <button className="btn green">Start Free Trial</button>
+            </Link>
             <Link to="/demo">
               <button className="btn outline">For Developers</button>
             </Link>
-            {/* <Link to="/editor">
-              <button className="btn link">For Developers</button>
-            </Link> */}
           </div>
         </div>
 
         <div className="hero-image">
           <img
-            src="https://undraw.co/api/illustrations/5b607164-e66d-4377-938b-e19a40836b88"
+            src="https://media.istockphoto.com/id/1448124439/vector/web-development-programming-and-code-testing-ui-concept-with-laptop-displaying-futuristic.jpg?s=2048x2048&w=is&k=20&c=0X5erQ6XjaLMfwWd3zUoigSAFSiFMHQAgw0mz2EvgvI="
             alt="coding"
           />
         </div>

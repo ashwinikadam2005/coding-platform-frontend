@@ -1,0 +1,71 @@
+.practice-page {
+  padding: 30px;
+}
+
+.practice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.practice-header h2 {
+  color: #1ba94c;
+}
+
+.category-tab select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+.practice-page {
+  padding: 20px;
+}
+
+.practice-tabs {
+  display: flex;
+  gap: 20px;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 0;
+  cursor: pointer;
+  color: #333;
+  position: relative;
+}
+
+.tab-btn.active {
+  color: #1ba94c;
+  border-bottom: 3px solid #1ba94c;
+}
+
+.practice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.category-tab select {
+  padding: 5px;
+  font-size: 14px;
+}
+
+.problems-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.coming-soon {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 18px;
+  color: gray;
+}
