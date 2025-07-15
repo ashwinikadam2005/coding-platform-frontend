@@ -5,11 +5,31 @@ const RecruiterLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add your authentication logic here
-    alert(`Login:\nEmail: ${email}\nPassword: ${password}`);
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch("http://localhost:5000/api/recruiters/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert("Login successful");
+      console.log(data.recruiter); // Can save in localStorage
+    } else {
+      alert(data.message);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Something went wrong. Try again.");
+  }
+};
 
   return (
     <div className="recruiter-page">
