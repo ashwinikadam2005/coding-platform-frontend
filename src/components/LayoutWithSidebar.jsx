@@ -1,7 +1,6 @@
-// src/components/LayoutWithSidebar.jsx
 import React from "react";
 import Sidebar from "./Sidebar";
-import "./LayoutWithSidebar.css"; // optional
+import "./LayoutWithSidebar.css"; 
 
 const LayoutWithSidebar = ({ children }) => {
   return (

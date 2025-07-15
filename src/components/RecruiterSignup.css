@@ -1,0 +1,153 @@
+.recruiter-navbar {
+  background-color: #e0eae3;
+  color: rgb(27, 22, 22);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recruiter-navbar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.recruiter-navbar-login {
+  color: rgb(44, 42, 42);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.recruiter-signup-page {
+  display: flex;
+  min-height: calc(100vh - 64px);
+  align-items: stretch;
+  flex-direction: row;
+}
+
+.recruiter-signup-image-section {
+  flex: 1;
+  height: 100vh;
+  width: 100%;
+  background-color: #e0f2f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 3rem; */
+}
+
+.recruiter-signup-image {
+  width: 100%;
+  max-width: 690px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recruiter-signup-wrapper {
+  flex: 1;
+  padding: 4rem;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 2rem 0;
+}
+
+.recruiter-progress {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.recruiter-step {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  color: #777;
+}
+
+.recruiter-step.active {
+  background-color: #179842;
+  color: white;
+}
+
+.recruiter-signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.recruiter-btn-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.recruiter-input-group input {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.recruiter-error {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.recruiter-server-message {
+  color: red;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.recruiter-active-btn {
+  background-color: #179842;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.recruiter-disabled-btn {
+  background-color: #ccc;
+  color: #666;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: not-allowed;
+}
+.recruiter-signup-header {
+  margin-bottom: 1.5rem;
+}
+
+.recruiter-signup-header h2 {
+  font-size: 1.8rem;
+  color: #2e2e2e;
+  margin-bottom: 0.4rem;
+}
+
+.recruiter-subtext {
+  font-size: 1rem;
+  color: #6b6b6b;
+}
+
+@media (max-width: 768px) {
+  .recruiter-signup-page {
+    flex-direction: column;
+  }
+
+  .recruiter-signup-image-section,
+  .recruiter-signup-wrapper {
+    flex: none;
+    width: 100%;
+    margin: 0;
+    padding: 2rem;
+  }
+
+  .recruiter-signup-image {
+    width: 100%;
+  }
+}

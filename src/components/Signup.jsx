@@ -41,7 +41,7 @@ const Signup = () => {
         setError(data.message || "Signup failed");
       } else {
         setSuccess("Account created successfully!");
-        setTimeout(() => navigate("/login"), 2000); 
+        setTimeout(() => navigate("/developer-login"), 2000); 
       }
     } catch (err) {
       setError("Something went wrong. Please try again.");

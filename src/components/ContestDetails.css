@@ -1,0 +1,75 @@
+.contest-details {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px 40px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.contest-details h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.contest-details p {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #555;
+}
+
+.contest-details strong {
+  color: #333;
+}
+
+/* Buttons */
+.register-btn,
+.registered-btn,
+.start-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.register-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.register-btn:hover {
+  background-color: #218838;
+}
+
+.registered-btn {
+  background-color: #6c757d;
+  color: white;
+  cursor: not-allowed;
+}
+
+.start-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.start-btn:hover {
+  background-color: #0056b3;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

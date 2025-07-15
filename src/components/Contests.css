@@ -1,0 +1,144 @@
+/* ContestPage.css */
+
+.contest-page {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+  font-family: "Segoe UI", sans-serif;
+  background: #f5f7fa;
+}
+
+.contest-page h1 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #2980b9;
+  padding-bottom: 0.5rem;
+}
+
+.contest-section {
+  margin-bottom: 3rem;
+  padding: 1rem 1.5rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+}
+
+.contest-section h2 {
+  color: #34495e;
+  border-left: 5px solid #3498db;
+  padding-left: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.contest-card {
+  border: 1px solid #e0e0e0;
+  padding: 1.2rem;
+  margin-bottom: 1.2rem;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contest-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.contest-org {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contest-card h3 {
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.contest-card p {
+  margin: 4px 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+.contest-card em {
+  color: #2980b9;
+  font-style: normal;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .contest-page {
+    padding: 1rem;
+  }
+
+  .contest-card {
+    padding: 1rem;
+  }
+
+  .contest-page h1 {
+    font-size: 2rem;
+  }
+}
+.contest-page {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.contest-section {
+  margin-bottom: 2rem;
+}
+
+.contest-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  background-color: #f9f9f9;
+  transition: transform 0.2s ease;
+}
+
+.contest-card:hover {
+  transform: scale(1.02);
+}
+
+.contest-org {
+  color: #555;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.start-btn,
+.register-btn,
+.registered-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.start-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.register-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.registered-btn {
+  background-color: gray;
+  color: white;
+  cursor: not-allowed;
+}

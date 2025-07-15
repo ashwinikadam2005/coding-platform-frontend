@@ -1,6 +1,5 @@
-/* LayoutWithSidebar.css */
 .main-content {
-  margin-left: 240px; /* same as sidebar width */
+  margin-left: 240px; 
   padding: 20px;
   min-height: 100vh;
   background-color: #f5f5f5;

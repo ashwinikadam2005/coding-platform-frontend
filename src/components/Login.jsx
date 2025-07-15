@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import "./Login.css";
 
@@ -37,10 +37,13 @@ const Login = () => {
       if (!res.ok) {
         setError(data.message || "Login failed");
       } else {
-        localStorage.setItem("token", data.token); 
-        navigate("/dashboard"); 
+        // ✅ Store token and userId
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userId", data.user._id);
+        navigate("/dashboard");
       }
     } catch (err) {
+      console.error(err);
       setError("Server error. Try again later.");
     }
   };
@@ -68,7 +71,6 @@ const Login = () => {
           value={form.email}
           onChange={handleChange}
         />
-
         <input
           type="password"
           name="password"
@@ -81,6 +83,10 @@ const Login = () => {
 
         <button type="submit">Login</button>
       </form>
+
+      <p className="bottom-text">
+        Don't have an account? <Link to="/developer-signup">Create one</Link>
+      </p>
     </div>
   );
 };

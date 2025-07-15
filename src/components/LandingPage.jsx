@@ -5,7 +5,6 @@ import "./LandingPage.css";
 const LandingPage = () => {
   return (
     <div className="landing-page">
-      {/* Navbar */}
       <header className="navbar">
         <div className="container">
           <h1 className="logo">CodeRank</h1>
@@ -26,10 +25,10 @@ const LandingPage = () => {
           </p>
 
           <div className="cta-buttons">
-            <Link to="/choose-role">
+            <Link to="/recruiter-signup">
               <button className="btn green">Start Free Trial</button>
             </Link>
-            <Link to="/demo">
+            <Link to="/developer-signup">
               <button className="btn outline">For Developers</button>
             </Link>
           </div>

@@ -94,3 +94,19 @@
   color: red;
   font-size: 14px;
 }
+.bottom-text {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.bottom-text a {
+  color: #179842;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.bottom-text a:hover {
+  text-decoration: underline;
+}

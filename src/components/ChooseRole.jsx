@@ -12,8 +12,8 @@ const ChooseRole = () => {
   };
 
   const handleCreateAccount = () => {
-    if (selectedRole === "developer") navigate("/signup");
-    else if (selectedRole === "recruiter") navigate("/demo");
+    if (selectedRole === "developer") navigate("/developer-signup");
+    else if (selectedRole === "recruiter") navigate("/recruiter-signup");
   };
 
   return (

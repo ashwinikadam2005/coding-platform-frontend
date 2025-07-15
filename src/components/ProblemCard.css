@@ -41,3 +41,23 @@
 .difficulty.hard {
   background-color: red;
 }
+.solve-btn {
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.solve-btn.solved {
+  background-color: #28a745;
+}
+
+.solve-status {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
