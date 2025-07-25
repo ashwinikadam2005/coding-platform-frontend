@@ -1,0 +1,42 @@
+.admin-navbar {
+  background-color: #1cb372; /* HackerRank green shade */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.admin-navbar-logo {
+  font-size: 26px;
+  font-weight: bold;
+  color: white;
+}
+
+.admin-navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.admin-navbar-links a,
+.logout-btn {
+  color: #ffffff;
+  font-weight: 500;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.logout-btn:hover,
+.admin-navbar-links a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  text-decoration: none;
+}

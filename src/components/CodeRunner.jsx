@@ -18,6 +18,7 @@ const CodeRunner = () => {
   const [results, setResults] = useState([]);
   const [allPassed, setAllPassed] = useState(false);
   const [submissions, setSubmissions] = useState([]);
+  const [leaderboard, setLeaderboard] = useState([]);
 
   const API_OPTIONS = {
     method: "POST",
@@ -38,8 +39,12 @@ const CodeRunner = () => {
   useEffect(() => {
     const fetchSubmissions = async () => {
       if (selectedTab === "Submissions" && problem?._id) {
+        const userId = localStorage.getItem("userId");
+        console.log(userId);
         try {
-          const res = await axios.get(`http://localhost:5000/api/submissions/${problem._id}`);
+          const res = await axios.get(
+            `http://localhost:5000/api/submissions/${problem._id}?userId=${userId}`
+          );
           setSubmissions(res.data);
         } catch (err) {
           console.error("Failed to fetch submissions:", err);
@@ -71,7 +76,8 @@ const CodeRunner = () => {
       );
 
       const result = res.data;
-      const execOutput = result.stdout?.trim() ?? result.stderr?.trim() ?? "No output";
+      const execOutput =
+        result.stdout?.trim() ?? result.stderr?.trim() ?? "No output";
       setOutput(execOutput);
     } catch (err) {
       setOutput(`Error: ${err.response?.data?.message || err.message}`);
@@ -104,7 +110,8 @@ const CodeRunner = () => {
           { headers: API_OPTIONS.headers }
         );
 
-        const actualOutput = res.data.stdout?.trim() ?? res.data.stderr?.trim() ?? "No output";
+        const actualOutput =
+          res.data.stdout?.trim() ?? res.data.stderr?.trim() ?? "No output";
         const passed =
           actualOutput.replace(/\s+/g, "").toLowerCase() ===
           test.expectedOutput.trim().replace(/\s+/g, "").toLowerCase();
@@ -132,6 +139,7 @@ const CodeRunner = () => {
 
     setResults(tempResults);
     setAllPassed(passedAll);
+    const userId = localStorage.getItem("userId"); // or however you store it
 
     if (passedAll) {
       try {
@@ -139,6 +147,7 @@ const CodeRunner = () => {
           problemId: problem._id,
           title: problem.title,
           userCode: code,
+          userId,
           languageId,
         });
 
@@ -147,6 +156,7 @@ const CodeRunner = () => {
           title: problem.title,
           userCode: code,
           languageId,
+          userId,
           timestamp: new Date().toISOString(),
         });
       } catch (err) {
@@ -156,6 +166,22 @@ const CodeRunner = () => {
 
     setLoading(false);
   };
+  useEffect(() => {
+    const fetchLeaderboard = async () => {
+      if (selectedTab === "Leaderboard" && problem?._id) {
+        try {
+          const res = await axios.get(
+            `http://localhost:5000/api/leaderboard/${problem._id}`
+          );
+          setLeaderboard(res.data);
+        } catch (err) {
+          console.error("Failed to fetch leaderboard:", err);
+        }
+      }
+    };
+
+    fetchLeaderboard();
+  }, [selectedTab, problem]);
 
   return (
     <div className="code-runner-container">
@@ -176,9 +202,15 @@ const CodeRunner = () => {
           {problem && (
             <div className="problem-details">
               <h2>{problem.title}</h2>
-              <p><strong>Description:</strong> {problem.description}</p>
-              <p><strong>Input Format:</strong> {problem.inputFormat}</p>
-              <p><strong>Output Format:</strong> {problem.outputFormat}</p>
+              <p>
+                <strong>Description:</strong> {problem.description}
+              </p>
+              <p>
+                <strong>Input Format:</strong> {problem.inputFormat}
+              </p>
+              <p>
+                <strong>Output Format:</strong> {problem.outputFormat}
+              </p>
               {problem.sampleTestCases?.length > 0 && (
                 <>
                   <h4>Sample Test Cases:</h4>
@@ -186,7 +218,8 @@ const CodeRunner = () => {
                     {problem.sampleTestCases.map((sample, idx) => (
                       <li key={idx}>
                         <strong>Input:</strong> <pre>{sample.input}</pre>
-                        <strong>Expected Output:</strong> <pre>{sample.expectedOutput}</pre>
+                        <strong>Expected Output:</strong>{" "}
+                        <pre>{sample.expectedOutput}</pre>
                       </li>
                     ))}
                   </ul>
@@ -197,7 +230,11 @@ const CodeRunner = () => {
 
           <div className="language-select">
             <label>Language:</label>
-            <select onChange={handleLanguageChange} value={languageId} disabled={loading}>
+            <select
+              onChange={handleLanguageChange}
+              value={languageId}
+              disabled={loading}
+            >
               <option value="71">Python 3</option>
               <option value="63">JavaScript (Node.js)</option>
               <option value="54">C++</option>
@@ -236,7 +273,9 @@ const CodeRunner = () => {
           <h3>Output:</h3>
           <pre className="output-area">{output}</pre>
 
-          {allPassed && <div className="success-banner">🎉 All test cases passed!</div>}
+          {allPassed && (
+            <div className="success-banner">🎉 All test cases passed!</div>
+          )}
 
           {results.length > 0 && (
             <>
@@ -244,7 +283,8 @@ const CodeRunner = () => {
               <ul className="test-results">
                 {results.map((r, idx) => (
                   <li key={idx} className={r.passed ? "pass" : "fail"}>
-                    <strong>Test {idx + 1}</strong><br />
+                    <strong>Test {idx + 1}</strong>
+                    <br />
                     <strong>Input:</strong> <pre>{r.input}</pre>
                     <strong>Expected:</strong> <pre>{r.expected}</pre>
                     <strong>Actual:</strong> <pre>{r.actual}</pre>
@@ -269,21 +309,61 @@ const CodeRunner = () => {
             <ul className="submission-list">
               {submissions.map((s, idx) => (
                 <li key={idx} className="submission-item">
-                  <pre><strong>Language ID:</strong> {s.languageId}</pre>
-                  <pre><strong>Code:</strong> {s.userCode}</pre>
-                  <pre><strong>Submitted At:</strong> {new Date(s.timestamp).toLocaleString()}</pre>
+                  <pre>
+                    <strong>Language ID:</strong> {s.languageId}
+                  </pre>
+                  <pre>
+                    <strong>Code:</strong> {s.userCode}
+                  </pre>
+                  <pre>
+                    <strong>Submitted At:</strong>{" "}
+                    {new Date(s.timestamp).toLocaleString()}
+                  </pre>
                 </li>
               ))}
             </ul>
           )}
         </div>
       )}
-
-      {selectedTab !== "Problem" && selectedTab !== "Submissions" && (
-        <div className="coming-soon">
-          <p>{selectedTab} section coming soon!</p>
+      {selectedTab === "Leaderboard" && (
+        <div className="leaderboard-section">
+          <h3>🏆 Leaderboard</h3>
+          {leaderboard.length === 0 ? (
+            <p>No one has solved this problem yet.</p>
+          ) : (
+            <table className="leaderboard-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>User</th>
+                  <th>Email</th>
+                  <th>Language</th>
+                  <th>Submitted At</th>
+                </tr>
+              </thead>
+              <tbody>
+                {leaderboard.map((entry, idx) => (
+                  <tr key={idx}>
+                    <td>{idx + 1}</td>
+                    <td>{entry.name}</td>
+                    <td>{entry.email}</td>
+                    <td>{entry.languageName}</td>
+                    <td>{new Date(entry.timestamp).toLocaleString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       )}
+
+      {selectedTab !== "Problem" &&
+        selectedTab !== "Submissions" &&
+        !(selectedTab === "Leaderboard" && leaderboard.length > 0) && (
+          <div className="coming-soon">
+            <p>{selectedTab} section coming soon!</p>
+          </div>
+        )}
     </div>
   );
 };

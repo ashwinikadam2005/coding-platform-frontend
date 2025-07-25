@@ -56,6 +56,23 @@ const LoginOptions = () => {
             New here? <Link to="/developer-signup" className="lo-small-link">Create a developer account</Link>
           </p>
         </div>
+
+        {/* Admin Login - Login Only */}
+        <div className="lo-box lo-admin-box">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png"
+            alt="Admin Icon"
+            className="lo-icon"
+          />
+          <h2>Admin Login</h2>
+          <p>
+            Access platform controls, monitor activity, and manage users.
+          </p>
+          <p>
+            Reserved for system administrators only.
+          </p>
+          <Link to="/admin-login" className="lo-login-btn">Login as Admin</Link>
+        </div>
       </div>
     </div>
   );

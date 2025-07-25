@@ -19,7 +19,7 @@ const Sidebar = () => {
         <NavLink to="/dashboard" activeclassname="active"><FaHome /> Dashboard</NavLink>
         <NavLink to="/practice"><FaLaptopCode /> Practice</NavLink>
         <NavLink to="/contests"><FaTrophy /> Contests</NavLink>
-        <NavLink to="/leaderboard"><FaClipboardList /> Leaderboard</NavLink>
+        <NavLink to="/overall-leaderboard"><FaClipboardList /> Leaderboard</NavLink>
         <NavLink to="/interview-prep"><FaBriefcase /> Interview Prep</NavLink>
         <NavLink to="/jobs"><FaBriefcase /> Jobs</NavLink>
         <NavLink to="/profile"><FaUser /> Profile</NavLink>
