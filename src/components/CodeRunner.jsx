@@ -8,6 +8,23 @@ const tabs = ["Problem", "Submissions", "Leaderboard", "Discussions"];
 const CodeRunner = () => {
   const location = useLocation();
   const problem = location.state?.problem;
+  useEffect(() => {
+  const fetchSolvedProblems = async () => {
+    const userId = localStorage.getItem("userId");
+    if (!userId || !problem?._id) return;
+
+    try {
+      const res = await axios.get(`http://localhost:5000/api/solved?userId=${userId}`);
+      const ids = res.data.map((item) => item.problemId.toString());
+      setSolvedIds(ids);
+    } catch (err) {
+      console.error("Failed to fetch solved problems:", err);
+    }
+  };
+
+  fetchSolvedProblems();
+}, [problem]);
+
 
   const [selectedTab, setSelectedTab] = useState("Problem");
   const [code, setCode] = useState("// Write your code here");
@@ -19,6 +36,7 @@ const CodeRunner = () => {
   const [allPassed, setAllPassed] = useState(false);
   const [submissions, setSubmissions] = useState([]);
   const [leaderboard, setLeaderboard] = useState([]);
+const [solvedIds, setSolvedIds] = useState([]);
 
   const API_OPTIONS = {
     method: "POST",
@@ -92,6 +110,11 @@ const CodeRunner = () => {
     if (!problem?.testCases?.length) return alert("No test cases found.");
     if (!code.trim()) return alert("Please write some code before submitting.");
 
+  if (solvedIds.includes(problem._id)) {
+    alert("You've already solved this problem.");
+    return;
+  }
+
     setLoading(true);
     setResults([]);
     setOutput("");
@@ -149,7 +172,11 @@ const CodeRunner = () => {
           userCode: code,
           userId,
           languageId,
-        });
+        }); 
+            setSolvedIds((prev) => [...prev, problem._id]);
+
+    alert("All test cases passed! Problem marked as solved.");
+
 
         await axios.post("http://localhost:5000/api/submissions", {
           problemId: problem._id,

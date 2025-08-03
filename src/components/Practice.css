@@ -69,3 +69,104 @@
   font-size: 18px;
   color: gray;
 }
+.my-progress-section {
+  padding: 2rem;
+  text-align: center;
+}
+
+.progress-title {
+  font-size: 2rem;
+  color: #6a1b9a;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.progress-container {
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+.progress-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.progress-card {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  width: 120px;
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+.progress-card:hover {
+  transform: scale(1.05);
+}
+.progress-card .icon {
+  font-size: 2rem;
+}
+.progress-card p {
+  margin: 0.4rem 0;
+  color: #444;
+  font-weight: 500;
+}
+.progress-card h3 {
+  font-size: 1.5rem;
+  color: #1e1e1e;
+}
+
+/* Bars */
+.progress-bar-section {
+  margin-top: 2rem;
+}
+.bar-wrapper {
+  margin-bottom: 1.5rem;
+}
+.progress-bar {
+  height: 20px;
+  background: #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.progress-fill.star {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #8bc34a);
+  transition: width 0.6s ease-in-out;
+}
+.progress-fill.badge {
+  height: 100%;
+  background: linear-gradient(90deg, #ff9800, #ff5722);
+  transition: width 0.6s ease-in-out;
+}
+
+.motivational-box {
+  background: #e0f7fa;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: 500;
+  margin-top: 20px;
+  color: #006064;
+  animation: pulseText 2s infinite alternate;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulseText {
+  0% {
+    color: #006064;
+  }
+  100% {
+    color: #004d40;
+  }
+}

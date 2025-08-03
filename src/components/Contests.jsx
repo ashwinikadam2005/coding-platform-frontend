@@ -7,28 +7,18 @@ const Contests = () => {
   const [contests, setContests] = useState({ active: [], upcoming: [] });
   const [registeredContests, setRegisteredContests] = useState([]);
   const navigate = useNavigate();
-  const userId = localStorage.getItem("userId"); // ensure this is set after login/signup
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     fetchContests();
-    fetchUserRegisteredContests();
-  }, []);
+    if (userId) fetchUserRegisteredContests();
+  }, [userId]);
 
   const fetchContests = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/contests");
-      const today = new Date();
-      const sorted = { active: [], upcoming: [] };
-
-      res.data.forEach((contest) => {
-        const contestDate = new Date(contest.date);
-        if (contestDate.toDateString() === today.toDateString()) {
-          sorted.active.push(contest);
-        } else if (contestDate > today) {
-          sorted.upcoming.push(contest);
-        }
-      });
-      setContests(sorted);
+      const res = await axios.get("http://localhost:5000/api/user-contests/available");
+      const { active = [], upcoming = [] } = res.data;
+      setContests({ active, upcoming });
     } catch (err) {
       console.error("Error loading contests", err);
     }
@@ -51,9 +41,10 @@ const Contests = () => {
         userId,
         contestId,
       });
-      setRegisteredContests([...registeredContests, contestId]);
+      setRegisteredContests((prev) => [...prev, contestId]);
       alert("Registered successfully!");
     } catch (err) {
+      console.error("Registration failed", err);
       alert("Already registered or error occurred.");
     }
   };
@@ -67,24 +58,25 @@ const Contests = () => {
     navigate(`/contest-details/${contestId}`);
   };
 
-  const renderCard = (contest, isActive = false) => {
-    const contestDate = new Date(contest.date).toDateString();
-    const regDeadline = new Date(contest.date);
-    regDeadline.setDate(regDeadline.getDate() - 2);
+  const formatDate = (dateStr) => {
+    const d = new Date(dateStr);
+    return isNaN(d) ? "Invalid Date" : d.toDateString();
+  };
 
+  const renderCard = (contest, isActive = false) => {
     const isRegistered = registeredContests.includes(contest._id);
+    const regDeadline = new Date(contest.startDate);
+    regDeadline.setDate(regDeadline.getDate() - 1);
 
     return (
-      <div
-        key={contest._id}
-        className="contest-card"
-        onClick={() => handleViewDetails(contest._id)}
-      >
+      <div key={contest._id} className="contest-card" onClick={() => handleViewDetails(contest._id)}>
         <div className="contest-org">{contest.organization}</div>
         <h3>{contest.name}</h3>
         <p>{contest.description}</p>
-        <p><strong>Date:</strong> {contestDate}</p>
+        <p><strong>Start Date:</strong> {formatDate(contest.startDate)}</p>
+        <p><strong>End Date:</strong> {formatDate(contest.endDate)}</p>
         <p><strong>Status:</strong> {contest.status}</p>
+        <p><strong>Category:</strong> {contest.category}</p>
 
         {!isActive && (
           <>
@@ -92,10 +84,7 @@ const Contests = () => {
             {isRegistered ? (
               <button className="registered-btn" disabled>Registered</button>
             ) : (
-              <button
-                className="register-btn"
-                onClick={(e) => handleRegister(contest._id, e)}
-              >
+              <button className="register-btn" onClick={(e) => handleRegister(contest._id, e)}>
                 Register
               </button>
             )}
@@ -114,6 +103,7 @@ const Contests = () => {
   return (
     <div className="contest-page">
       <h1>Contests</h1>
+
       <div className="contest-section">
         <h2>🟢 Active Contests</h2>
         {contests.active.length > 0 ? (
@@ -122,6 +112,7 @@ const Contests = () => {
           <p>No active contests.</p>
         )}
       </div>
+
       <div className="contest-section">
         <h2>🕐 Upcoming Contests</h2>
         {contests.upcoming.length > 0 ? (

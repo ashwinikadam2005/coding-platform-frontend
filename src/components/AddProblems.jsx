@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AdminNavbar from "./AdminNavbar";
 import axios from "axios";
 import "./AddProblems.css";
 
@@ -26,7 +25,6 @@ const AddProblems = () => {
 
   return (
     <div>
-      <AdminNavbar />
       <div className="add-problems-container">
 
         {/* 🔗 Navigate to /create when clicked */}

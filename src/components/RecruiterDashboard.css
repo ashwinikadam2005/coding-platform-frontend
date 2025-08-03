@@ -1,0 +1,66 @@
+/* Full screen layout */
+.full-dashboard {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to right, #f8fbff, #e8f0fe);
+  padding: 30px 50px;
+  box-sizing: border-box;
+}
+
+/* Header styling */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.dashboard-header h1 {
+  font-size: 36px;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.dashboard-header h1 span {
+  color: #0066cc;
+}
+
+.dashboard-header p {
+  font-size: 20px;
+  color: #444;
+}
+
+/* Section with cards */
+.dashboard-section {
+  flex: 1;
+}
+
+.dashboard-section h2 {
+  font-size: 28px;
+  color: #222;
+  margin-bottom: 25px;
+}
+
+/* Grid layout for cards */
+.dashboard-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+/* Individual card */
+.dashboard-card {
+  background-color: #ffffff;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  color: #333;
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  background-color: #e6f3ff;
+}

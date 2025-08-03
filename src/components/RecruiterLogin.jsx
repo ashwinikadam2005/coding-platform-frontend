@@ -1,35 +1,43 @@
 import React, { useState } from "react";
 import "./RecruiterLogin.css";
+import { useNavigate } from "react-router-dom";
+
 
 const RecruiterLogin = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
-    const response = await fetch("http://localhost:5000/api/recruiters/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/recruiters/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (response.ok) {
-      alert("Login successful");
-      console.log(data.recruiter); // Can save in localStorage
-    } else {
-      alert(data.message);
+      if (response.ok) {
+        alert("Login successful");
+        localStorage.setItem("recruiter", JSON.stringify(data.recruiter));
+        navigate("/recruiter/dashboard");
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong. Try again.");
     }
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Something went wrong. Try again.");
-  }
-};
+  };
 
   return (
     <div className="recruiter-page">

@@ -8,7 +8,7 @@ const AdminNavbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("adminLoggedIn");
-    navigate("/admin-login");
+    navigate("/");
   };
 
   return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./ContestDetails.css"; 
+import "./ContestDetails.css";
 
 const ContestDetails = () => {
   const { id } = useParams();
@@ -51,13 +51,23 @@ const ContestDetails = () => {
     navigate(`/contest/${id}`);
   };
 
+  const formatDate = (dateStr) => {
+    const d = new Date(dateStr);
+    return isNaN(d) ? "Invalid Date" : d.toDateString();
+  };
+
   if (!contest) return <p>Loading...</p>;
+
+  const regDeadline = new Date(contest.startDate);
+  regDeadline.setDate(regDeadline.getDate() - 1);
 
   return (
     <div className="contest-details">
       <h1>{contest.name}</h1>
       <p><strong>Organization:</strong> {contest.organization}</p>
-      <p><strong>Date:</strong> {new Date(contest.date).toDateString()}</p>
+      <p><strong>Start Date:</strong> {formatDate(contest.startDate)}</p>
+      <p><strong>End Date:</strong> {formatDate(contest.endDate)}</p>
+      <p><strong>Registration Last Date:</strong> {formatDate(regDeadline)}</p>
       <p><strong>Description:</strong> {contest.description}</p>
       <p><strong>Status:</strong> {contest.status}</p>
       <p><strong>Category:</strong> {contest.category}</p>
